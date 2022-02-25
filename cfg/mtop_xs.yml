@@ -1,0 +1,43 @@
+
+vocab: 
+  tokenizer_type: wordpiece
+  tokenizer: 
+    vocab: ./wordpiece/vocab.txt
+    lowercase: false
+    strip_accents: false
+    clean_text: false
+  vocab_path: ./vocab.npy
+
+train:
+  dataset_type: mtop
+  dataset_path: ./data/mtop/
+  labels: ./data/mtop/bio_labels.txt
+  tensorboard_path: ./logs/
+  log_interval_steps: 10
+  epochs: 50
+  train_batch_size: 256
+  test_batch_size: 256
+  num_workers: 32
+  max_seq_len: &max_seq_len 64
+  optimizer: 
+    lr: 5e-4
+    betas: [0.9, 0.999]
+    eps: 1e-8 
+
+model:
+  projection:
+    num_hashes: 64
+    feature_size: &feature_size 1024
+    window_size: &window_size 0
+  bottleneck: 
+    window_size: *window_size
+    feature_size: *feature_size
+    hidden_dim: &hidden_dim 64
+  mixer: 
+    num_mixers: 2
+    max_seq_len: *max_seq_len
+    hidden_dim: *hidden_dim
+    mlp_hidden_dim: 256
+  token_cls:
+    hidden_dim: *hidden_dim
+    num_classes: 151
