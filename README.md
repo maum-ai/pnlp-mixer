@@ -37,11 +37,12 @@ Please check configuration examples and also comments in the [`cfg`](./cfg) dire
 ### Caching Vocab Hashes
 
 ```bash
-python projection.py -v VOCAB_FILE -c CFG_PATH -o OUTPUT_FILE
+python projection.py -v VOCAB_FILE -c CFG_PATH -g NGRAM_SIZE -o OUTPUT_FILE
 ```
 
 * `VOCAB_FILE`: path to the vocab file that contains 
 * `CFG_PATH`: path to the configurations file
+* `NGRAM_SIZE`: size of n-grams used during hashing
 * `OUTPUT_FILE`: path where the resulting `.npy` file will be stored
 
 ### Training / Testing

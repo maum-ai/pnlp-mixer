@@ -42,13 +42,13 @@ class MinHash:
             hash2 = self.hash_fn2(token)
             hash = np.array([(hash1 + i * hash2) % MAX_HASH_VALUE for i in range(self.num_hashes)])
             return hash
-        trigrams = []
+        ngrams = []
         for index in range(len(token) - self.ngram_size + 1): 
             hash1 = self.hash_fn1(token[index:index+self.ngram_size])
             hash2 = self.hash_fn2(token[index:index+self.ngram_size])
             hash = np.array([(hash1 + i * hash2) % MAX_HASH_VALUE for i in range(self.num_hashes)])
-            trigrams.append(hash)
-        fingerprint = np.array(trigrams).min(axis=-2)
+            ngrams.append(hash)
+        fingerprint = np.array(ngrams).min(axis=-2)
         return fingerprint
 
 class CachedHash:
@@ -71,6 +71,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--vocab_file', type=str)
     parser.add_argument('-c', '--cfg', type=str)
+    parser.add_argument('-g', '--ngram_size', type=int, default=3)
     parser.add_argument('-o', '--outfile', type=str, default='vocab.npy')
     return parser.parse_args()
 
@@ -88,6 +89,6 @@ if __name__ == '__main__':
         else SENTENCEPIECE_IS_CONTINUATION
     )
     proj_cfg = cfg.model.projection
-    min_hash = MinHash(proj_cfg.num_hashes)
+    min_hash = MinHash(proj_cfg.num_hashes, args.ngram_size)
     cache = {v: min_hash(v.replace('##', '').replace('▁', ''), is_cont(v)).astype(np.int32) for v in vocabs}
     np.save(args.outfile, cache)
