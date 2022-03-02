@@ -48,7 +48,7 @@ python projection.py -v VOCAB_FILE -c CFG_PATH -g NGRAM_SIZE -o OUTPUT_FILE
 ### Training / Testing
 
 ```bash
-python run.py -c CFG_PATH -n MODEL_NAME -m MODE -r CKPT_PATH
+python run.py -c CFG_PATH -n MODEL_NAME -m MODE -p CKPT_PATH
 ```
 
 * `CFG_PATH`: path to the configurations file
