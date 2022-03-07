@@ -85,7 +85,7 @@ if __name__ == '__main__':
     cfg = OmegaConf.load(args.cfg)
     is_cont = (
         WORDPIECE_IS_CONTINUATION
-        if cfg.tokenizer_type == "wordpiece"
+        if cfg.vocab.tokenizer_type == "wordpiece"
         else SENTENCEPIECE_IS_CONTINUATION
     )
     proj_cfg = cfg.model.projection
