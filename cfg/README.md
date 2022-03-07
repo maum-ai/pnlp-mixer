@@ -8,7 +8,7 @@ We provide the configuration files used during the experiments. The properties i
 vocab:
   tokenizer_type: wordpiece # wordpiece, sentencepiece-unigram or sentencepiece-bpe
   tokenizer: # constructor arguments for the tokenizer
-    vocab: ./wordpiece/vocab.txt 
+    vocab: ./wordpiece/mbert_vocab.txt 
     lowercase: false
     strip_accents: false
     clean_text: false
@@ -16,8 +16,8 @@ vocab:
 
 train:
   dataset_type: mtop # mtop, matis or imdb
-  dataset_path: ./data/mtop/ # root path of the dataset
-  labels: ./data/mtop/bio_labels.txt # path to a file containing all labels OR list of all labels
+  dataset_path: ./mtop # root path of the dataset
+  labels: ./labels/mtop_labels.txt # path to a file containing all labels OR list of all labels
   tensorboard_path: ./logs/ # path where the tensorboard logs and checkponts will be stored
   log_interval_steps: 10 # training step logging interval
   epochs: 50 # number of epochs to run

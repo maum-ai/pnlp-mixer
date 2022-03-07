@@ -2,7 +2,7 @@
 vocab: 
   tokenizer_type: wordpiece
   tokenizer: 
-    vocab: ./wordpiece/vocab.txt
+    vocab: ./wordpiece/mbert_vocab.txt
     lowercase: false
     strip_accents: false
     clean_text: false

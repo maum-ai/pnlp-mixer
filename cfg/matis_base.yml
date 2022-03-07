@@ -2,7 +2,7 @@
 vocab: 
   tokenizer_type: wordpiece
   tokenizer: 
-    vocab: ./wordpiece/vocab.txt
+    vocab: ./wordpiece/mbert_vocab.txt
     lowercase: false
     strip_accents: false
     clean_text: false
@@ -11,7 +11,7 @@ vocab:
 train:
   dataset_type: matis
   dataset_path: ./data/matis/
-  labels: ./data/matis/labels.txt
+  labels: ./labels/matis_labels.txt
   tensorboard_path: ./logs/
   log_interval_steps: 10
   epochs: 50
